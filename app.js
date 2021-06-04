@@ -214,7 +214,7 @@ function cal_date(){
     }
 
     date['date_link'] = day + month + year
-    date['date_text'] = day +" "+ month +" "+ year
+    date['date_text'] = day +"/"+ month +"/"+ year
 
     return date
 }
