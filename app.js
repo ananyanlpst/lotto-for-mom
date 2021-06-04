@@ -57,8 +57,6 @@ function get_lotto(date, my_lotto){
         }
     ]
 
-    return test
-
     my_lotto = my_lotto.trim()
 
     const my_lotto_first_three = my_lotto.substr(0,3)
@@ -75,8 +73,10 @@ function get_lotto(date, my_lotto){
         data: data
     }
 
-      axios(config)
+    axios(config)
         .then( (response) => {
+
+            return test
 
             const res_lotto = response.data
             const drawdate = res_lotto.drawdate
