@@ -50,6 +50,9 @@ function reply_message(reply_token, my_lotto, date) {
     return false
 }
 
+let found = false
+let message_res = []
+
 function get_lotto(date, my_lotto){
 
     my_lotto = my_lotto.trim()
@@ -67,9 +70,6 @@ function get_lotto(date, my_lotto){
         },
         data: data
     }
-
-    let found = false
-    let message_res = []
 
     axios(config)
         .then( (response) => {
