@@ -163,7 +163,10 @@ function get_lotto(date, my_lotto){
                     )
                 }
 
-                return message_res
+                return [{
+                    type: 'text',
+                    text: 'นุ่นเสียใจด้วย! แม่ไม่ถูกรางวัล :('
+                }]
 
             }
         })
