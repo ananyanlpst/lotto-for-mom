@@ -91,7 +91,7 @@ function reply_message(reply_token, my_lotto, date) {
                             )
                             found = true
                         }
-                    } else if(id == 'my_lotto_last_two') {
+                    } else if(id == 'lotto_last_two') {
                         if(number == my_lotto_last_two){
                             message_res.push(
                                 {
