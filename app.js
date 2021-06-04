@@ -177,8 +177,5 @@ function get_lotto(date, my_lotto){
         )
     }
 
-    return [{
-        type: 'text',
-        text: message_res
-    }]
+    return message_res
 }
