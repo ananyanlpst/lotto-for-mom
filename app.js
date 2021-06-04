@@ -91,17 +91,17 @@ function reply_message(reply_token, my_lotto, date) {
                             )
                             found = true
                         }
-                    // } else if(id == 'my_lotto_last_two') {
-                    //     if(number.includes(my_lotto_last_two)){
-                    //         message_res.push(
-                    //             {
-                    //                 type: 'text',
-                    //                 text:   'แม่ถูก' + name + ' : ' + my_lotto_last_two + ' 🎉' +
-                    //                             ' จำนวนเงิน ' + reword + ' บาท'
-                    //             }
-                    //         )
-                    //         found = true
-                    //     }
+                    } else if(id == 'my_lotto_last_two') {
+                        if(number == my_lotto_last_two){
+                            message_res.push(
+                                {
+                                    type: 'text',
+                                    text:   'แม่ถูก' + name + ' : ' + my_lotto_last_two + ' 🎉' +
+                                                ' จำนวนเงิน ' + reword + ' บาท'
+                                }
+                            )
+                            found = true
+                        }
                     } else {
                         if(typeof number == 'object'){
                             if(number.includes(my_lotto)){
