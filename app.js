@@ -51,9 +51,9 @@ function reply_message(reply_token, my_lotto, date) {
 }
 
 function get_lotto(date, my_lotto){
-
-    let found = false
-    let message_res = []
+    
+    var found = false
+    var message_res = []
 
     let config = {
         method: 'post',
@@ -165,8 +165,7 @@ function get_lotto(date, my_lotto){
         message_res.push(
             {
                 type: 'text',
-                // text: 'found : ' + found + ' , message_res : ' + message_res.length
-                text: axios(config)
+                text: 'found : ' + found + ' , message_res : ' + message_res.length
             }
         )
     }
