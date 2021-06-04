@@ -68,6 +68,15 @@ function get_lotto(date, my_lotto){
     axios(config)
         .then( (response) => {
 
+            message_res.push(
+                {
+                    type: 'text',
+                    text: 'found : ' + found + ' , message_res : ' + message_res.length
+                }
+            )
+        
+            return message_res
+
             my_lotto = my_lotto.trim()
 
             const my_lotto_first_three = my_lotto.substr(0,3)
@@ -160,7 +169,7 @@ function get_lotto(date, my_lotto){
                     )
                 }
             
-                console.log(message_res)
+                return message_res
             }
         })
         .catch( (error) => {
