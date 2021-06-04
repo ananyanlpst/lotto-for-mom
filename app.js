@@ -9,6 +9,9 @@ app.use(express.json())
 var data = qs.stringify({})
 
 app.post('/webhook', (req,res) => {
+    res.json(req.body)
+    return false;
+    
     var reply_token = req.body.events[0].replyToken
     var { my_lotto } = req.body.events[0].message.text
     const date = '01062564'
