@@ -165,7 +165,7 @@ function get_lotto(date, my_lotto){
         message_res.push(
             {
                 type: 'text',
-                text: 'นุ่นเสียใจด้วย! แม่ไม่ถูกรางวัล :('
+                text: 'found : ' + found + ' , message_res : ' + message_res.length
             }
         )
     }
