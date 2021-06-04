@@ -75,17 +75,15 @@ function get_lotto(date, my_lotto){
         data: data
     }
 
+    var found = false
+    var message_res = []
+
     axios(config)
         .then( (response) => {
-
-            return test
 
             const res_lotto = response.data
             const drawdate = res_lotto.drawdate
             const result = res_lotto.result
-
-            var found = false
-            var message_res = []
 
             if(res_lotto.code == '200'){
                 result.forEach(value => {
@@ -164,24 +162,23 @@ function get_lotto(date, my_lotto){
                     }
 
                 });
-
-                if(found){
-                    message_res.push(
-                        {
-                            type: 'text',
-                            text: 'นุ่นเสียใจด้วย! แม่ไม่ถูกรางวัล :('
-                        }
-                    )
-                }
-
-                return [{
-                    type: 'text',
-                    text: 'นุ่นเสียใจด้วย! แม่ไม่ถูกรางวัล :('
-                }]
-
             }
         })
         .catch( (error) => {
             res.json(error);
         });
+    
+    if(!found){
+        message_res.push(
+            {
+                type: 'text',
+                text: 'นุ่นเสียใจด้วย! แม่ไม่ถูกรางวัล :('
+            }
+        )
+    }
+
+    return [{
+        type: 'text',
+        text: message_res
+    }]
 }
