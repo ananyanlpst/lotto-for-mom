@@ -42,7 +42,7 @@ function reply_message(reply_token, my_lotto, date) {
         messages: [
             {
                 type: 'text',
-                text: '3 ตัวหน้า : ' + my_lotto
+                text: my_lotto
             }
         ]
     })
