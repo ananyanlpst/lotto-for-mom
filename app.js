@@ -19,7 +19,7 @@ app.post('/webhook', (req,res) => {
 
     var reply_token = req.body.events[0].replyToken
     var my_lotto = req.body.events[0].message.text
-    const date = '01062564'
+    const date = cal_date()
 
     reply_message(reply_token, my_lotto, date)
     res.sendStatus(200)
@@ -46,7 +46,12 @@ function reply_message(reply_token, my_lotto, date) {
     const my_lotto_last_two = my_lotto.substr(4)
 
     var found = false
-    var message_res = []
+    var message_res = [
+        {
+            type: 'text',
+            text: 'งวดวันที่ ' + date
+        }
+    ]
 
     axios(config)
         .then( (response) => {
@@ -187,6 +192,25 @@ function reply_message(reply_token, my_lotto, date) {
         });
 
     return false
+}
+
+function cal_date(){
+    let date_ob = new Date();
+
+    let day = date_ob.getDate()
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2)
+    let year = date_ob.getFullYear() + 543
+
+    let hours = date_ob.getHours() + 7
+    let minutes = date_ob.getMinutes()
+
+    if(day == 16 && hours < 16 || day < 16){
+        day = "01"
+    } else {
+        day = "16"
+    }
+
+    return day + month + year
 }
 
 // function get_lotto(date, my_lotto){
