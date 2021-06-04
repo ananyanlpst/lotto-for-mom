@@ -160,7 +160,7 @@ function get_lotto(date, my_lotto){
                     )
                 }
             
-                return message_res
+                console.log(message_res)
             }
         })
         .catch( (error) => {
