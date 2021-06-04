@@ -31,7 +31,7 @@ function reply_message(reply_token, my_lotto, date) {
 
     let config = {
         method: 'post',
-        url: 'https://api.krupreecha.com/' + date,
+        url: 'https://api.krupreecha.com/' + date['date_link'],
         headers: { 
           'Content-Type': 'application/json', 
           'x-api-key': '8197159309be38788bdd41b53815a6c9', 
@@ -49,7 +49,7 @@ function reply_message(reply_token, my_lotto, date) {
     var message_res = [
         {
             type: 'text',
-            text: 'งวดวันที่ ' + date
+            text: 'งวดวันที่ ' + date['date_text']
         }
     ]
 
@@ -195,6 +195,9 @@ function reply_message(reply_token, my_lotto, date) {
 }
 
 function cal_date(){
+
+    let date = []
+
     let date_ob = new Date();
 
     let day = date_ob.getDate()
@@ -210,7 +213,10 @@ function cal_date(){
         day = "16"
     }
 
-    return day + month + year
+    date['date_link'] = day + month + year
+    date['date_text'] = day +" "+ month +" "+ year
+
+    return date
 }
 
 // function get_lotto(date, my_lotto){
