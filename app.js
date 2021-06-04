@@ -99,7 +99,9 @@ function get_lotto(date, my_lotto){
                                             ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
-                            found = true
+                            found = found.then((result) => {
+                                return true
+                            })
                         }
                     } else if(id == 'lotto_last_three') {
                         if(number.includes(my_lotto_last_three)){
@@ -110,7 +112,9 @@ function get_lotto(date, my_lotto){
                                             ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
-                            found = true
+                            found = found.then((result) => {
+                                return true
+                            })
                         }
                     } else if(id == 'my_lotto_last_two') {
                         if(number.includes(my_lotto_last_two)){
@@ -121,7 +125,9 @@ function get_lotto(date, my_lotto){
                                             ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
-                            found = true
+                            found = found.then((result) => {
+                                return true
+                            })
                         }
                     } else {
                         if(typeof number == 'object'){
@@ -133,7 +139,9 @@ function get_lotto(date, my_lotto){
                                                 ' จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
-                                found = true
+                                found = found.then((result) => {
+                                    return true
+                                })
                             }
                         } else if(typeof number == 'string'){
                             if(number == my_lotto){
@@ -144,7 +152,9 @@ function get_lotto(date, my_lotto){
                                                 ' จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
-                                found = true
+                                found = found.then((result) => {
+                                    return true
+                                })
                             }
                         }
                     }
