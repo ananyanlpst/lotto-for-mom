@@ -34,7 +34,7 @@ function reply_message(reply_token, my_lotto, date) {
 
     let body = JSON.stringify({
         replyToken: reply_token,
-        messages: [get_lotto(my_lotto, date)]
+        messages: get_lotto(my_lotto, date)
     })
 
     request.post({
