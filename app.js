@@ -27,7 +27,7 @@ app.post('/webhook', (req,res) => {
 
 app.listen(port)
 
-function reply_message(reply_token, my_lotto, date) {
+async function reply_message(reply_token, my_lotto, date) {
 
     let headers = {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ function reply_message(reply_token, my_lotto, date) {
 
     let body = JSON.stringify({
         replyToken: reply_token,
-        messages: get_lotto(my_lotto, date)
+        messages: await get_lotto(my_lotto, date)
     })
 
     request.post({
