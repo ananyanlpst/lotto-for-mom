@@ -50,6 +50,15 @@ function reply_message(reply_token, my_lotto, date) {
 
 function get_lotto(date, my_lotto){
 
+    var test = [
+        {
+            type: 'text',
+            text: 'แม่ถูกหวย'
+        }
+    ]
+
+    return test
+
     my_lotto = my_lotto.trim()
 
     const my_lotto_first_three = my_lotto.substr(0,3)
