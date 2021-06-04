@@ -63,8 +63,10 @@ function reply_message(reply_token, my_lotto, date) {
                     const number = value['number']
                     const reword = Number(value['reword']).toLocaleString()
 
-                    for(var key in number) {
-                        number[key] = number[key].trim();
+                    if(typeof number == 'object'){
+                        for(var key in number) {
+                            number[key] = number[key].trim();
+                        }
                     }
 
                     if(id == 'lotto_first_three') {
@@ -72,7 +74,7 @@ function reply_message(reply_token, my_lotto, date) {
                             message_res.push(
                                 {
                                     type: 'text',
-                                    text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
+                                    text:   'แม่ถูก' + name + ' : ' + my_lotto_first_three + ' 🎉' +
                                                 ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
@@ -83,23 +85,23 @@ function reply_message(reply_token, my_lotto, date) {
                             message_res.push(
                                 {
                                     type: 'text',
-                                    text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
+                                    text:   'แม่ถูก' + name + ' : ' + my_lotto_last_three + ' 🎉' +
                                                 ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
                             found = true
                         }
-                    } else if(id == 'my_lotto_last_two') {
-                        if(number.includes(my_lotto_last_two)){
-                            message_res.push(
-                                {
-                                    type: 'text',
-                                    text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
-                                                ' จำนวนเงิน ' + reword + ' บาท'
-                                }
-                            )
-                            found = true
-                        }
+                    // } else if(id == 'my_lotto_last_two') {
+                    //     if(number.includes(my_lotto_last_two)){
+                    //         message_res.push(
+                    //             {
+                    //                 type: 'text',
+                    //                 text:   'แม่ถูก' + name + ' : ' + my_lotto_last_two + ' 🎉' +
+                    //                             ' จำนวนเงิน ' + reword + ' บาท'
+                    //             }
+                    //         )
+                    //         found = true
+                    //     }
                     } else {
                         if(typeof number == 'object'){
                             if(number.includes(my_lotto)){
