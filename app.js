@@ -161,7 +161,7 @@ function get_lotto(date, my_lotto){
             )
         });
     
-    if(!!found && message_res.length == 0){
+    if(!found && message_res.length == 0){
         message_res.push(
             {
                 type: 'text',
