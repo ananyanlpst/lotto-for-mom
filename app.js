@@ -72,8 +72,8 @@ function reply_message(reply_token, my_lotto, date) {
                             message_res.push(
                                 {
                                     type: 'text',
-                                    text:   'แม่ถูก' + name + ' : ' + my_lotto_first_three + 
-                                            ' จำนวนเงิน ' + reword + ' บาท'
+                                    text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
+                                                ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
                             found = true
@@ -83,8 +83,8 @@ function reply_message(reply_token, my_lotto, date) {
                             message_res.push(
                                 {
                                     type: 'text',
-                                    text:   'แม่ถูก' + name + ' : ' + my_lotto_last_three + 
-                                            ' จำนวนเงิน ' + reword + ' บาท'
+                                    text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
+                                                ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
                             found = true
@@ -94,8 +94,8 @@ function reply_message(reply_token, my_lotto, date) {
                             message_res.push(
                                 {
                                     type: 'text',
-                                    text:   'แม่ถูก' + name + ' : ' + my_lotto_last_two + 
-                                            ' จำนวนเงิน ' + reword + ' บาท'
+                                    text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
+                                                ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
                             found = true
@@ -107,7 +107,7 @@ function reply_message(reply_token, my_lotto, date) {
                                     {
                                         type: 'text',
                                         text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
-                                                "<br>" +'จำนวนเงิน ' + reword + ' บาท'
+                                                ' จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
                                 found = true
@@ -117,7 +117,7 @@ function reply_message(reply_token, my_lotto, date) {
                                 message_res.push(
                                     {
                                         type: 'text',
-                                        text:   'แม่ถูก' + name + ' : ' + my_lotto + 
+                                        text:   'แม่ถูก' + name + ' : ' + my_lotto + ' 🎉' +
                                                 ' จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
@@ -127,6 +127,15 @@ function reply_message(reply_token, my_lotto, date) {
                     }
 
                 });
+
+                if(!found && message_res.length == 0){
+                    message_res.push(
+                        {
+                            type: 'text',
+                            text: 'นุ่นเสียใจด้วย! แม่ไม่ถูกรางวัล 🥺'
+                        }
+                    )
+                }
 
                 let headers = {
                     'Content-Type': 'application/json',
