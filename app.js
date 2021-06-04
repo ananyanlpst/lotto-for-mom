@@ -150,6 +150,17 @@ function get_lotto(date, my_lotto){
                     }
 
                 });
+
+                if(!found && message_res.length == 0){
+                    message_res.push(
+                        {
+                            type: 'text',
+                            text: 'found : ' + found + ' , message_res : ' + message_res.length
+                        }
+                    )
+                }
+            
+                return message_res
             }
         })
         .catch( (error) => {
@@ -161,14 +172,14 @@ function get_lotto(date, my_lotto){
             )
         });
     
-    if(!found && message_res.length == 0){
-        message_res.push(
-            {
-                type: 'text',
-                text: 'found : ' + found + ' , message_res : ' + message_res.length
-            }
-        )
-    }
+    // if(!found && message_res.length == 0){
+    //     message_res.push(
+    //         {
+    //             type: 'text',
+    //             text: 'found : ' + found + ' , message_res : ' + message_res.length
+    //         }
+    //     )
+    // }
 
-    return message_res
+    // return message_res
 }
