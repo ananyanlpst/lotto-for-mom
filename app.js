@@ -106,8 +106,8 @@ function reply_message(reply_token, my_lotto, date) {
                                 message_res.push(
                                     {
                                         type: 'text',
-                                        text:   'แม่ถูก' + name + ' : ' + my_lotto + 
-                                                ' จำนวนเงิน ' + reword + ' บาท'
+                                        text:   'แม่ถูก' + name + ' : ' + my_lotto + '🎉' +
+                                                '<br> จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
                                 found = true
