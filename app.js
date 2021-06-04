@@ -50,7 +50,7 @@ function reply_message(reply_token, my_lotto, date) {
     return false
 }
 
-async function get_lotto(date, my_lotto){
+function get_lotto(date, my_lotto){
 
     let found = false
     let message_res = []
@@ -65,121 +65,111 @@ async function get_lotto(date, my_lotto){
         data: data
     }
 
-    var result = await axios(config)
-                    .then( (response) => {
+    axios(config)
+        .then( (response) => {
 
-                        my_lotto = my_lotto.trim()
+            my_lotto = my_lotto.trim()
 
-                        const my_lotto_first_three = my_lotto.substr(0,3)
-                        const my_lotto_last_three = my_lotto.substr(3)
-                        const my_lotto_last_two = my_lotto.substr(4)
+            const my_lotto_first_three = my_lotto.substr(0,3)
+            const my_lotto_last_three = my_lotto.substr(3)
+            const my_lotto_last_two = my_lotto.substr(4)
 
-                        const res_lotto = response.data
-                        const drawdate = res_lotto.drawdate
-                        const result = res_lotto.result
+            const res_lotto = response.data
+            const drawdate = res_lotto.drawdate
+            const result = res_lotto.result
 
-                        if(res_lotto.code == '200'){
-                            result.forEach(value => {
+            if(res_lotto.code == '200'){
+                result.forEach(value => {
 
-                                const id = value['id']
-                                const name = value['name']
-                                const number = value['number']
-                                const reword = value['reword']
+                    const id = value['id']
+                    const name = value['name']
+                    const number = value['number']
+                    const reword = value['reword']
 
-                                for(var key in number) {
-                                    number[key] = number[key].trim();
+                    for(var key in number) {
+                        number[key] = number[key].trim();
+                    }
+
+                    if(id == 'lotto_first_three') {
+                        if(number.includes(my_lotto_first_three)){
+                            message_res.push(
+                                {
+                                    type: 'text',
+                                    text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto_first_three + 
+                                            ' จำนวนเงิน ' + reword + ' บาท'
                                 }
-
-                                if(id == 'lotto_first_three') {
-                                    if(number.includes(my_lotto_first_three)){
-                                        message_res.push(
-                                            {
-                                                type: 'text',
-                                                text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto_first_three + 
-                                                        ' จำนวนเงิน ' + reword + ' บาท'
-                                            }
-                                        )
-                                        found = true
-                                    }
-                                } else if(id == 'lotto_last_three') {
-                                    if(number.includes(my_lotto_last_three)){
-                                        message_res.push(
-                                            {
-                                                type: 'text',
-                                                text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto_last_three + 
-                                                        ' จำนวนเงิน ' + reword + ' บาท'
-                                            }
-                                        )
-                                        found = true
-                                    }
-                                } else if(id == 'my_lotto_last_two') {
-                                    if(number.includes(my_lotto_last_two)){
-                                        message_res.push(
-                                            {
-                                                type: 'text',
-                                                text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto_last_two + 
-                                                        ' จำนวนเงิน ' + reword + ' บาท'
-                                            }
-                                        )
-                                        found = true
-                                    }
-                                } else {
-                                    if(typeof number == 'object'){
-                                        if(number.includes(my_lotto)){
-                                            message_res.push(
-                                                {
-                                                    type: 'text',
-                                                    text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto + 
-                                                            ' จำนวนเงิน ' + reword + ' บาท'
-                                                }
-                                            )
-                                            found = true
-                                        }
-                                    } else if(typeof number == 'string'){
-                                        if(number == my_lotto){
-                                            message_res.push(
-                                                {
-                                                    type: 'text',
-                                                    text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto + 
-                                                            ' จำนวนเงิน ' + reword + ' บาท'
-                                                }
-                                            )
-                                            found = true
-                                        }
-                                    }
+                            )
+                            found = true
+                        }
+                    } else if(id == 'lotto_last_three') {
+                        if(number.includes(my_lotto_last_three)){
+                            message_res.push(
+                                {
+                                    type: 'text',
+                                    text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto_last_three + 
+                                            ' จำนวนเงิน ' + reword + ' บาท'
                                 }
-
-                            });
-
-                            if(!found && message_res.length == 0){
+                            )
+                            found = true
+                        }
+                    } else if(id == 'my_lotto_last_two') {
+                        if(number.includes(my_lotto_last_two)){
+                            message_res.push(
+                                {
+                                    type: 'text',
+                                    text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto_last_two + 
+                                            ' จำนวนเงิน ' + reword + ' บาท'
+                                }
+                            )
+                            found = true
+                        }
+                    } else {
+                        if(typeof number == 'object'){
+                            if(number.includes(my_lotto)){
                                 message_res.push(
                                     {
                                         type: 'text',
-                                        text: 'found : ' + found + ' , message_res : ' + message_res.length
+                                        text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto + 
+                                                ' จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
+                                found = true
                             }
-                        
-                            return message_res
+                        } else if(typeof number == 'string'){
+                            if(number == my_lotto){
+                                message_res.push(
+                                    {
+                                        type: 'text',
+                                        text:   'แม่ถูกรางวัล ' + name + ' : ' + my_lotto + 
+                                                ' จำนวนเงิน ' + reword + ' บาท'
+                                    }
+                                )
+                                found = true
+                            }
                         }
-                    })
-                    .catch( (error) => {
-                        message_res.push(
-                            {
-                                type: 'text',
-                                text: error
-                            }
-                        )
-                    });
-    
-    // if(!found && message_res.length == 0){
-    //     message_res.push(
-    //         {
-    //             type: 'text',
-    //             text: 'found : ' + found + ' , message_res : ' + message_res.length
-    //         }
-    //     )
-    // }
+                    }
 
-    return result
+                });
+            }
+        })
+        .catch( (error) => {
+            message_res.push(
+                {
+                    type: 'text',
+                    text: error
+                }
+            )
+        });
+    
+    if(!found && message_res.length == 0){
+        message_res.push(
+            {
+                type: 'text',
+                // text: 'found : ' + found + ' , message_res : ' + message_res.length
+                text: axios(config)
+            }
+        )
+    }
+
+    return message_res
 }
