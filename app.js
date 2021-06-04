@@ -26,11 +26,11 @@ app.listen(port)
 
 function reply_message(reply_token, my_lotto, date) {
     
-    my_lotto = my_lotto.trim()
+    // my_lotto = my_lotto.trim()
 
-    const my_lotto_first_three = my_lotto.substr(0,3)
-    const my_lotto_last_three = my_lotto.substr(3)
-    const my_lotto_last_two = my_lotto.substr(4)
+    // const my_lotto_first_three = my_lotto.substr(0,3)
+    // const my_lotto_last_three = my_lotto.substr(3)
+    // const my_lotto_last_two = my_lotto.substr(4)
 
     let headers = {
         'Content-Type': 'application/json',
@@ -42,15 +42,7 @@ function reply_message(reply_token, my_lotto, date) {
         messages: [
             {
                 type: 'text',
-                text: '3 ตัวหน้า : ' + my_lotto_first_three
-            } ,
-            {
-                type: 'text',
-                text: '3 ตัวหลัง : ' + my_lotto_last_three
-            } ,
-            {
-                type: 'text',
-                text: '2 ตัวหลัง : ' + my_lotto_last_two
+                text: '3 ตัวหน้า : ' + my_lotto
             }
         ]
     })
