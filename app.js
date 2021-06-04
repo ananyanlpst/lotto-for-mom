@@ -52,20 +52,13 @@ function reply_message(reply_token, my_lotto, date) {
 
 function get_lotto(date, my_lotto){
 
-    var test = [
-        {
-            type: 'text',
-            text: 'แม่ถูกหวย'
-        }
-    ]
-
     my_lotto = my_lotto.trim()
 
-    const my_lotto_first_three = my_lotto.substr(0,3)
-    const my_lotto_last_three = my_lotto.substr(3)
-    const my_lotto_last_two = my_lotto.substr(4)
+    let my_lotto_first_three = my_lotto.substr(0,3)
+    let my_lotto_last_three = my_lotto.substr(3)
+    let my_lotto_last_two = my_lotto.substr(4)
 
-    var config = {
+    let config = {
         method: 'post',
         url: 'https://api.krupreecha.com/' + date,
         headers: { 
@@ -75,8 +68,8 @@ function get_lotto(date, my_lotto){
         data: data
     }
 
-    var found = false
-    var message_res = []
+    let found = false
+    let message_res = []
 
     axios(config)
         .then( (response) => {
