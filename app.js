@@ -55,12 +55,6 @@ function get_lotto(date, my_lotto){
     let found = false
     let message_res = []
 
-    my_lotto = my_lotto.trim()
-
-    let my_lotto_first_three = my_lotto.substr(0,3)
-    let my_lotto_last_three = my_lotto.substr(3)
-    let my_lotto_last_two = my_lotto.substr(4)
-
     let config = {
         method: 'post',
         url: 'https://api.krupreecha.com/' + date,
@@ -73,6 +67,12 @@ function get_lotto(date, my_lotto){
 
     axios(config)
         .then( (response) => {
+
+            my_lotto = my_lotto.trim()
+
+            const my_lotto_first_three = my_lotto.substr(0,3)
+            const my_lotto_last_three = my_lotto.substr(3)
+            const my_lotto_last_two = my_lotto.substr(4)
 
             const res_lotto = response.data
             const drawdate = res_lotto.drawdate
@@ -99,9 +99,7 @@ function get_lotto(date, my_lotto){
                                             ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
-                            found = found.then(() => {
-                                return true
-                            })
+                            found = true
                         }
                     } else if(id == 'lotto_last_three') {
                         if(number.includes(my_lotto_last_three)){
@@ -112,9 +110,7 @@ function get_lotto(date, my_lotto){
                                             ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
-                            found = found.then(() => {
-                                return true
-                            })
+                            found = true
                         }
                     } else if(id == 'my_lotto_last_two') {
                         if(number.includes(my_lotto_last_two)){
@@ -125,9 +121,7 @@ function get_lotto(date, my_lotto){
                                             ' จำนวนเงิน ' + reword + ' บาท'
                                 }
                             )
-                            found = found.then(() => {
-                                return true
-                            })
+                            found = true
                         }
                     } else {
                         if(typeof number == 'object'){
@@ -139,9 +133,7 @@ function get_lotto(date, my_lotto){
                                                 ' จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
-                                found = found.then(() => {
-                                    return true
-                                })
+                                found = true
                             }
                         } else if(typeof number == 'string'){
                             if(number == my_lotto){
@@ -152,9 +144,7 @@ function get_lotto(date, my_lotto){
                                                 ' จำนวนเงิน ' + reword + ' บาท'
                                     }
                                 )
-                                found = found.then(() => {
-                                    return true
-                                })
+                                found = true
                             }
                         }
                     }
