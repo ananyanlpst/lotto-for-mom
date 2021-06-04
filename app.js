@@ -107,7 +107,6 @@ function get_lotto(date, my_lotto){
                                 }
                             )
                             found = true
-                            return false;
                         }
                     } else if(id == 'lotto_last_three') {
                         if(number.includes(my_lotto_last_three)){
@@ -119,7 +118,6 @@ function get_lotto(date, my_lotto){
                                 }
                             )
                             found = true
-                            return false;
                         }
                     } else if(id == 'my_lotto_last_two') {
                         if(number.includes(my_lotto_last_two)){
@@ -131,7 +129,6 @@ function get_lotto(date, my_lotto){
                                 }
                             )
                             found = true
-                            return false;
                         }
                     } else {
                         if(typeof number == 'object'){
@@ -144,7 +141,6 @@ function get_lotto(date, my_lotto){
                                     }
                                 )
                                 found = true
-                                return false;
                             }
                         } else if(typeof number == 'string'){
                             if(number == my_lotto){
@@ -156,7 +152,6 @@ function get_lotto(date, my_lotto){
                                     }
                                 )
                                 found = true
-                                return false;
                             }
                         }
                     }
@@ -165,7 +160,12 @@ function get_lotto(date, my_lotto){
             }
         })
         .catch( (error) => {
-            res.json(error);
+            message_res.push(
+                {
+                    type: 'text',
+                    text: error
+                }
+            )
         });
     
     if(!found){
