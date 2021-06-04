@@ -32,6 +32,39 @@ function reply_message(reply_token, my_lotto, date) {
     const my_lotto_last_three = my_lotto.substr(3)
     const my_lotto_last_two = my_lotto.substr(4)
 
+    let headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer {1ogqp9VT3fsAyxOCrHSHWg+yZBeg8Dz7AK22cLELG4S0BOQIQ0l+IfG2KodHZD9VQuCroJvS+sHXxG0WNk9pvm2tgSkmlk84sEzvjzhaBHU0BxNqlaGe7AclezCEgnTpagwA/A1hbj32VzbVK/3JbAdB04t89/1O/w1cDnyilFU=}'
+    }
+
+    let body = JSON.stringify({
+        replyToken: reply_token,
+        messages: [
+            {
+                type: 'text',
+                text: '3 ตัวหน้า : ' + my_lotto_first_three
+            } ,
+            {
+                type: 'text',
+                text: '3 ตัวหลัง : ' + my_lotto_last_three
+            } ,
+            {
+                type: 'text',
+                text: '2 ตัวหลัง : ' + my_lotto_last_two
+            }
+        ]
+    })
+
+    request.post({
+        url: 'https://api.line.me/v2/bot/message/reply',
+        headers: headers,
+        body: body
+    }, (err, res, body) => {
+        console.log('status = ' + res.statusCode);
+    });
+
+    return false;
+
     // res.json({
     //     my_lotto_first_three,
     //     my_lotto_last_three,
