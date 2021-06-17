@@ -135,7 +135,7 @@ function reply_message(reply_token, my_lotto, date) {
 
                 });
 
-                if(!found && message_res.length == 0){
+                if(!found){
                     message_res.push(
                         {
                             type: 'text',
@@ -143,13 +143,6 @@ function reply_message(reply_token, my_lotto, date) {
                         }
                     )
                 }
-
-                message_res.push(
-                    {
-                        type: 'text',
-                        text: 'found : '+found+' , message_res.length : '+message_res.length
-                    }
-                )
 
                 let headers = {
                     'Content-Type': 'application/json',
