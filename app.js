@@ -48,17 +48,19 @@ function reply_message(reply_token, my_lotto, date) {
     var found = false
     var message_res = []
 
-    message_res.push({
-        type: 'text',
-        text: 'งวดวันที่ ' + date['date_text']
-    })
-
+    
     axios(config)
-        .then( (response) => {
-
+    .then( (response) => {
+        
             const res_lotto = response.data
             const drawdate = res_lotto.drawdate
             const result = res_lotto.result
+            
+            message_res.push({
+                type: 'text',
+                // text: 'งวดวันที่ ' + date['date_text']
+                text: 'งวดวันที่ ' + drawdate
+            })
 
             if(res_lotto.code == '200'){
                 result.forEach(value => {
